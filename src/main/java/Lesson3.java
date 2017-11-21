@@ -8,25 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson3 {
-    public static final String CONTENT_TITLE = ".//*[@id='content']/div[1]/div/h2";
+    private static final String CONTENT_TITLE = ".//*[@id='content']/div[1]/div/h2";
 
     // only for MODULES and for CATALOGUE
-    public static final String MAIN_DIV_TITLE = ".//*[@id='main-div']/div[1]/h2";
+    private static final String MAIN_DIV_TITLE = ".//*[@id='main-div']/div[1]/h2";
 
-    public static final String DASHBOARD = ".//*[@id='tab-AdminDashboard']/a";
-    public static final String ORDERS = ".//*[@id='subtab-AdminParentOrders']/a";
-    public static final String CATALOGUE = ".//*[@id='subtab-AdminCatalog']/a";
-    public static final String CLIENTS = "/html/body/nav/ul/li[5]/a";
-    public static final String CLIENTSERVICE = ".//*[@id='subtab-AdminParentCustomerThreads']/a";
-    public static final String STATISTIC = ".//*[@id='subtab-AdminStats']/a";
-    public static final String MODULES = ".//*[@id='subtab-AdminParentModulesSf']/a";
-    public static final String DESIGN = "/html/body/nav/ul/li[10]/a";
+    private static final String DASHBOARD = ".//*[@id='tab-AdminDashboard']/a";
+    private static final String ORDERS = ".//*[@id='subtab-AdminParentOrders']/a";
+    private static final String CATALOGUE = ".//*[@id='subtab-AdminCatalog']/a";
+    private static final String CLIENTS = "/html/body/nav/ul/li[5]/a";
+    private static final String CLIENTSERVICE = ".//*[@id='subtab-AdminParentCustomerThreads']/a";
+    private static final String STATISTIC = ".//*[@id='subtab-AdminStats']/a";
+    private static final String MODULES = ".//*[@id='subtab-AdminParentModulesSf']/a";
+    private static final String DESIGN = "/html/body/nav/ul/li[10]/a";
     //public static final String DESIGN = ".//*[@id='subtab-AdminParentThemes']/a";
-    public static final String DELIVERY = ".//*[@id='subtab-AdminParentShipping']/a";
-    public static final String PAYMENT = ".//*[@id='subtab-AdminParentPayment']/a";
-    public static final String INTERNATIONAL = ".//*[@id='subtab-AdminInternational']/a";
-    public static final String SHOPPARAMETERS = ".//*[@id='subtab-ShopParameters']/a";
-    public static final String ADMINADVANCEDPARAMETERS = ".//*[@id='subtab-AdminAdvancedParameters']/a";
+    private static final String DELIVERY = ".//*[@id='subtab-AdminParentShipping']/a";
+    private static final String PAYMENT = ".//*[@id='subtab-AdminParentPayment']/a";
+    private static final String INTERNATIONAL = ".//*[@id='subtab-AdminInternational']/a";
+    private static final String SHOPPARAMETERS = ".//*[@id='subtab-ShopParameters']/a";
+    private static final String ADMINADVANCEDPARAMETERS = ".//*[@id='subtab-AdminAdvancedParameters']/a";
 
     public static void main (String [] args){
         Lesson3 lesson3 = new Lesson3();
@@ -98,31 +98,31 @@ public class Lesson3 {
         button.click();
     }
 
-    public String clickMenueAndGetTitle(WebDriver driver, String pathMenueItem, String pathTile){
+    public String clickMenueAndGetTitle(WebDriver driver, String pathMenueItem, String pathPageTile){
         WebElement webElement = driver.findElement(By.xpath(pathMenueItem));
         webElement.click();
         threadSleep(3000);
-        WebElement webElementTitle = driver.findElement(By.xpath(pathTile));
+        WebElement webElementTitle = driver.findElement(By.xpath(pathPageTile));
         return webElementTitle.getText();
 
     }
 
-    public String getOnlyTitle (WebDriver driver, String pathTile){
-        WebElement webElementTitle = driver.findElement(By.xpath(pathTile));
+    public String getOnlyTitle (WebDriver driver, String pathPageTile){
+        WebElement webElementTitle = driver.findElement(By.xpath(pathPageTile));
         return webElementTitle.getText();
 
     }
 
 
-    public void threadSleep(int waitTimeMilisec){
+    public void threadSleep(int waitTimeMillisec){
         try {
-            Thread.sleep(waitTimeMilisec);
+            Thread.sleep(waitTimeMillisec);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public static void exitPage (WebDriver driver){
+    public void exitPage (WebDriver driver){
         WebElement webElement = driver.findElement(By.xpath(".//*[@id='employee_infos']/a"));
         webElement.click();
         WebElement exit = driver.findElement(By.xpath(".//*[@id='header_logout']"));
