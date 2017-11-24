@@ -8,16 +8,27 @@ import java.io.File;
 public class Lesson3 {
     public static void main (String [] args){
         WebDriver webDriver = BaseScript.getConfiguredDriver();
-        LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.open();
-        loginPage.fillEmailInput();
-        loginPage.fillPasswordInput();
-        loginPage.clickSubmitButton();
+        try {
+            LoginPage loginPage = new LoginPage(webDriver);
+            loginPage.open();
 
-        CatalogPage catalogPage = new CatalogPage(webDriver);
-        catalogPage.clickCategoryMenu();
-        catalogPage.clickAddCategory();
+            loginPage.fillEmailInput();
+            loginPage.fillPasswordInput();
+            loginPage.clickSubmitButton();
+            loginPage.waitLoadingLoginPage();
 
+            CatalogPage catalogPage = new CatalogPage(webDriver);
+            catalogPage.clickCategoryMenu();
+            catalogPage.waitLoadingCategoryPage();
+            catalogPage.clickAddCategory();
+            catalogPage.fillCategoryName();
+            catalogPage.saveNewCategory();
+            catalogPage.waitLoadingCategoryPage();
+            catalogPage.checkCreateNewCategory();
+
+        } catch (Exception e){
+            BaseScript.quiteDriver(webDriver);
+        }
         BaseScript.quiteDriver(webDriver);
 
         // login
