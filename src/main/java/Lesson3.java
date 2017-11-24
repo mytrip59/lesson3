@@ -16,7 +16,7 @@ public class Lesson3 {
 
         CatalogPage catalogPage = new CatalogPage(webDriver);
         catalogPage.clickCategoryMenu();
-
+        catalogPage.clickAddCategory();
 
         BaseScript.quiteDriver(webDriver);
 
