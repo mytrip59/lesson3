@@ -49,11 +49,13 @@ public class BaseScript {
      * @return New instance of {@link EventFiringWebDriver} object. Driver type is based on passed parameters
      * to the automation project, returns {@link ChromeDriver} instance by default.
      */
-    public static WebDriver getConfiguredDriver() {
+    public static EventFiringWebDriver getConfiguredDriver() {
         WebDriver driver = getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        return driver;
+        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(driver);
+        eventFiringWebDriver.register(new EventHandler());
+        return (EventFiringWebDriver) eventFiringWebDriver;
     }
 
     public static void quiteDriver (WebDriver webDriver){webDriver.quit();}
